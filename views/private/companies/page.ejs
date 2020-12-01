@@ -1,0 +1,40 @@
+<%- include ('../../layout/header.ejs'); %>
+<%- include ('../../layout/homenavbar.ejs') %> 
+<body>
+    <div class="container">
+        <br>
+        <% result.companies.rows.forEach(company => { %>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h2><%= company.name  %></h2>
+                </div>
+                <div class="card-body">
+                    <a href="/<%= company.slug %>" class="btn btn-success">Ver Empresa</a>
+                </div>
+            </div>
+        <% }) %>
+
+        <br>
+        <div class="row">
+            <br>
+            <div class="col col-12">
+
+                <% if(result.page > 2){ %> 
+                    <a style="float:left;" href="/companies/page/<%= result.page - 1 %> "><<< Prev</a>
+                <% } else if(result.page == 2){ %>
+                    <a style="float:left;" href="/"><<< Prev</a>
+                <% } %> 
+
+                <% if(result.next){ %> 
+                    <a style="float:right;" href="/companies/page/<%= result.page + 1 %> ">Next >>></a>
+                <% } %> 
+            </div>
+            <hr>
+        </div>
+        <br>
+
+    </div>
+    <br>
+</body>
+<%- include ('../../layout/footer.ejs'); %>

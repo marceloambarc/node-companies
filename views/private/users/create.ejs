@@ -1,0 +1,22 @@
+<%- include ("../../layout/header.ejs"); %> 
+<%- include ("../../layout/navbar.ejs"); %>
+
+<div class="container">
+    <hr>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h2>User Create</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/users/create">
+                <input name="email" type="email" class="form-control" placeholder="email@exemplo.com">
+                <br>
+                <input name="password" type="password" class="form-control" placeholder="inserto the password">
+                <br>
+                <button type="submit" class="btn btn-success btn-block">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ("../../layout/footer.ejs"); %> 

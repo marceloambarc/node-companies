@@ -1,0 +1,21 @@
+<%- include ('layout/header.ejs'); %>
+<%- include ('layout/homenavbar.ejs') %> 
+<body>
+    <div class="container">
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <h2><%= company.name  %></h2>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><%- company.description %></li>
+                    <li><%- company.email %></li>
+                    <li><%- company.cnpj %></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+<%- include ('layout/footer.ejs'); %>

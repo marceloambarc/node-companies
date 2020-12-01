@@ -1,0 +1,50 @@
+<%- include ('../../layout/header.ejs'); %>
+<%- include ('../../layout/navbar.ejs'); %>
+
+<div class="container">
+    <hr>
+    <h2>Empresas</h2>
+    <a class="btn btn-success" href="/private/companies/new">Criar Nova Empresa</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Slug</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% companies.forEach(company => { %> 
+                <tr>
+                    <td><%= company.id %></td>
+                    <td><%= company.name %></td>
+                    <td><%= company.slug %></td>
+                    <td><%= company.category.title %></td>
+                    <td>
+
+                        <a href="/private/companies/edit/<%= company.id %> " class="btn btn-warning">Editar</a>
+                        <form method="POST" action="/companies/delete" style="display:inline;" onsubmit="confirmDelete(event,this)">
+                            <input type="hidden" name="id" value="<%= company.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+
+                    </td>
+                </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+</div>
+
+<%- include ('../../layout/footer.ejs'); %>
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault();
+        var decision = confirm("Realmente Deseja Deletar?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>

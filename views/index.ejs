@@ -1,0 +1,36 @@
+<%- include ('layout/header.ejs'); %>
+<%- include ('layout/homenavbar.ejs') %> 
+<body>
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-vindo</h1>
+            <p class="lead">Subtítulo, Local jumbotron Bootstrap.</p>
+            <hr class="my-4">
+            <p>Aqui temos as informacoes para melhor compreender o Site.</p>
+            <a href="#" role="button" class="btn btn-primary btn-lg btn-lg">Desativado</a>
+        </div>
+        <% companies.forEach(company => { %>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h2><%= company.name  %></h2>
+                </div>
+                <div class="card-body">
+                    <a href="/<%= company.slug %>" class="btn btn-success">Ver Empresa</a>
+                </div>
+            </div>
+        <% }) %>
+        
+        <br>
+        <div class="row">
+            <br>
+            <div class="col col-12">
+                <a style="float:right;" href="/companies/page/2">Next >>></a>
+            </div>
+            <hr>
+        </div>
+        <br>
+    </div>
+</body>
+<%- include ('layout/footer.ejs'); %>

@@ -1,0 +1,56 @@
+<%- include ('../../layout/header.ejs'); %>
+<%- include ('../../layout/navbar.ejs'); %>
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Editar Empresa</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/companies/update">
+                <input type="hidden"  value="<%= company.id %>" name="id">
+
+                <input type="text" name="title" class="form-control" value="<%= company.name %>" placeholder="Defina o nome da Empresa"><br>
+
+                <textarea class="form-control" id="company" name="description" placeholder="Escreva a Descricao"></textarea><br>
+
+                <input type="email" name="email" class="form-control" value="<%= company.email %> "><br>
+
+                <input type="number" name="cnpj" class="form-control" value="<%= company.cnpj %>"><br>
+
+                <label>Categoria</label>
+                <select name="category" class="form-control">
+                    <% categories.forEach((category) => { %>
+                        <% if(category.id === company.categoryId){ %>
+                            <option value="<%= category.id %>" selected><%= category.title %></option>
+                        <% } else { %>
+                            <option value="<%= category.id %>"><%= category.title %></option>
+                        <% } %> 
+                    <% }) %>
+                </select>
+                <br>
+                <button class="btn btn-success">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="content" style="display:none;">
+    <%- company.description %> 
+</div>
+
+<%- include ('../../layout/footer.ejs'); %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language : 'pt_BR',
+        selector : "#company",
+        plugins : [
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+        ],
+        init_instance_callback: () => {
+            tinymce.get("company").setContent($("#content").html())
+        }
+    })
+</script>
